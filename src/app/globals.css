@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ---- Brand tokens: Bone / Charcoal / Saffron / Clay ---- */
+:root {
+  --bone: #f3eee5;
+  --charcoal: #1c1b19;
+  --saffron: #e9a21c;
+  --clay: #8b7764;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bone: #161513;
+    --charcoal: #f1ece2;
+    --saffron: #f0b13a;
+    --clay: #a8957f;
+  }
+}
+:root[data-theme="dark"] {
+  --bone: #161513;
+  --charcoal: #f1ece2;
+  --saffron: #f0b13a;
+  --clay: #a8957f;
+}
+
+@theme inline {
+  --color-bone: var(--bone);
+  --color-charcoal: var(--charcoal);
+  --color-saffron: var(--saffron);
+  --color-clay: var(--clay);
+  --font-sans: "Teshrin AR+LT", var(--font-plex), system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+}
+
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1400px;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+html {
+  scroll-behavior: auto;
+  background: var(--bone);
+}
+body {
+  background: var(--bone);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection {
+  background: var(--saffron);
+  color: #1c1b19;
+}
+
+/* Word-mask used by the split-words motion effect */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.word {
+  display: inline-block;
+  will-change: transform;
+}
+.char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Negative tracking breaks Arabic letter joining */
+html[lang="ar"] * {
+  letter-spacing: 0 !important;
+}
